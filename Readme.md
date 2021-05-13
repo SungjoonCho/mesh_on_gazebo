@@ -24,3 +24,14 @@ See MeshShape, MeshManager, ColladaLoad file to analyze source code related to m
 
 
 
+
+
+command
+<pre>
+In build directory
+make
+
+In MyWorld directory
+gazebo --verbose realsense_depth_to_mesh.world
+killall gzserver
+</pre>
