@@ -28,11 +28,13 @@ See MeshShape, MeshManager, ColladaLoad file to analyze source code related to m
 
 ## command
 <pre>
-In build directory
-make
+terminal0 : roscore
 
-In MyWorld directory
-gazebo --verbose realsense_depth_to_mesh.world
+terminal1(making plugin) : In build directory
+~/gazebo_plugin_pc/build$ make
+
+terminal2(running world) : In MyWorld directory
+~/gazebo_plugin_pc/MyWorld$ gazebo --verbose realsense_depth_to_mesh.world
 killall gzserver
 </pre>
 
@@ -94,3 +96,4 @@ string을 factoryMsgs에 pushback하며 이어서 sdf+mesh를 파싱해야(mesh 
 하지만 이는 real time으로 mesh를 제작해 gazebo에 띄워야 하기에는 적합 하지 않으며  
 이 외의 방식으로는 sdf를 파싱하는 구조, 디렉토리 전체를 수정해야 함. 다른 방법 좀 더 찾아보기
 </pre>
+
