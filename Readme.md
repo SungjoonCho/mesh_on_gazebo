@@ -57,7 +57,8 @@ ColladaLoaderPrivate은 내가 수정 중인 플러그인에서 접근불가(Pri
 <pre>
 a. model, geometry 생성
 
-b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, text)를 직접 넣고 미리 만든 geometry, model과 연결하여 msg 생성
+b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, text)를 직접 넣고 미리 만든 geometry, model과 
+연결하여 msg 생성
 </pre>
 
 -결과 
@@ -89,5 +90,7 @@ string을 factoryMsgs에 pushback하며 이어서 sdf+mesh를 파싱해야(mesh 
 </pre>
 
 <pre>
-시작과 과정을 어떻게 하든 결국은 Colladaloader에서 mesh filename을 찾아 file의 data를 가져오는 방식으로 감.하지만 이는 real time으로 mesh를 제작해 gazebo에 띄워야 하기에는 적합 하지 않으며  이 외의 방식으로는 sdf를 파싱하는 구조, 디렉토리 전체를 수정해야 함. 다른 방법 좀 더 찾아보기
+시작과 과정을 어떻게 하든 결국은 Colladaloader에서 mesh filename을 찾아 file의 data를 가져오는 방식으로 감.
+하지만 이는 real time으로 mesh를 제작해 gazebo에 띄워야 하기에는 적합 하지 않으며  
+이 외의 방식으로는 sdf를 파싱하는 구조, 디렉토리 전체를 수정해야 함. 다른 방법 좀 더 찾아보기
 </pre>
