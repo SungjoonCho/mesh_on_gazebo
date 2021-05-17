@@ -66,14 +66,14 @@ b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, 
 ```html
 <model>
 	<link>
-	<geometry>
-		<mesh>ColladaData</mesh>
-	</geometry>
+		<geometry>
+			<mesh>ColladaData</mesh>
+		</geometry>
 	</link>
 	<visual>
-	<geometry>
-		<mesh>ColladaData</mesh>
-	</geometry>
+		<geometry>
+			<mesh>ColladaData</mesh>
+		</geometry>
 	</visual>
 </model>
 ```
