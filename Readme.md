@@ -40,12 +40,17 @@ killall gzserver
 
 1. ~/model/info topic으로 publish 하는 데이터를 subscribe 받은 이후 sdf 파일 내 mesh uri 파일 데이터를 파싱하는 방식
 <pre>
-	문제점 : sdf 파일을 굳이 개입시키지 않고(실시간으로 파일을 별도로 만들고 로드하는데 시간이 너무 오래 걸림) mesh data만 가져오고자 함
+문제점 : sdf 파일을 굳이 개입시키지 않고(실시간으로 파일을 별도로 만들고 로드하는데 시간이 너무 오래 걸림) mesh data만 가져오고자 함
 </pre>
 
 2. ColladaLoader에서 진행하는 바와 같이 공유변수 수정하는 방식
 <pre>
-문제점 : 마지막 mesh 파싱 과정-> ColladaLoader를 이용해 생성된 객체 Dataptr은 ColladaLoaderPrivate이며 이와 동일한 방식으로 Customizing 하는 플러그인에서 접근해야 함  ColladaLoaderPrivate은 내가 수정 중인 플러그인에서 접근불가(Private 파일은 이미 빌드된 채로 설치됨) 그래서 sdf + mesh 파싱하는 전체 디렉토리를 새로 구성해야 되서 많은 시간 소요
+문제점
+
+마지막 mesh 파싱 과정-> ColladaLoader를 이용해 생성된 객체 Dataptr은 ColladaLoaderPrivate이며 
+이와 동일한 방식으로 Customizing 하는 플러그인에서 접근해야 함  
+ColladaLoaderPrivate은 내가 수정 중인 플러그인에서 접근불가(Private 파일은 이미 빌드된 채로 설치됨) 
+그래서 sdf + mesh 파싱하는 전체 디렉토리를 새로 구성해야 되서 많은 시간 소요
 </pre>
 
 3. Model file의 ModelToSDF 이용
