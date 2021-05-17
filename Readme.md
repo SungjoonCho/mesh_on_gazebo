@@ -53,6 +53,7 @@ killall gzserver
 a. model, geometry 생성
 
 b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, text)를 직접 넣고 미리 만든 geometry, model과 연결하여 msg 생성
+</pre>
 
 -결과 
 
@@ -71,7 +72,7 @@ b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, 
 </model>
 ```
 
-
+<pre>
 c. 만들어진 msg를 ModelToSDF 하여 완전한 sdf 형식으로 변경 후 InsertModelString or ~/factory topic으로 publish
 
 
