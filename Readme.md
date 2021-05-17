@@ -35,3 +35,52 @@ In MyWorld directory
 gazebo --verbose realsense_depth_to_mesh.world
 killall gzserver
 </pre>
+
+
+1. ~/model/info topic으로 publish 하는 데이터를 subscribe 받은 이후 sdf 파일 내 mesh uri 파일 데이터를 파싱하는 방식
+<pre>
+	문제점 : sdf 파일을 굳이 개입시키지 않고(실시간으로 파일을 별도로 만들고 로드하는데 시간이 너무 오래 걸림) mesh data만 가져오고자 함
+</pre>
+
+2. ColladaLoader에서 진행하는 바와 같이 공유변수 수정하는 방식
+<pre>
+문제점 : 마지막 mesh 파싱 과정-> ColladaLoader를 이용해 생성된 객체 Dataptr은 ColladaLoaderPrivate이며 이와 동일한 방식으로 Customizing 하는 플러그인에서 접근해야 함  ColladaLoaderPrivate은 내가 수정 중인 플러그인에서 접근불가(Private 파일은 이미 빌드된 채로 설치됨) 그래서 sdf + mesh 파싱하는 전체 디렉토리를 새로 구성해야 되서 많은 시간 소요
+</pre>
+
+3. Model file의 ModelToSDF 이용
+<pre>
+a. model, geometry 생성
+
+b. meshgeom 새로 생성하여 collada file(box dae sameple file)의 data(tag, text)를 직접 넣고 미리 만든 geometry, model과 연결하여 msg 생성
+
+-결과 
+
+```
+<model>
+	<link>
+	<geometry>
+		<mesh>ColladaData</mesh>
+	</geometry>
+	</link>
+	<visual>
+	<geometry>
+		<mesh>ColladaData</mesh>
+	</geometry>
+	</visual>
+</model>
+```
+
+
+c. 만들어진 msg를 ModelToSDF 하여 완전한 sdf 형식으로 변경 후 InsertModelString or ~/factory topic으로 publish
+
+
+-InsertModelString 방식 문제점
+string을 factoryMsgs에 pushback하며 이어서 sdf+mesh를 파싱해야(mesh tage에서 filename을 찾음) 하는 1번에서 겪은 문제와 동일한 문제 발생
+
+-factoryPub에 넣은 이후 Publish하는 방식 문제점
+위와 마찬가지로 factoryMsgs에 pushback하여 동일한 문제 발생
+</pre>
+
+<pre>
+시작과 과정을 어떻게 하든 결국은 Colladaloader에서 mesh filename을 찾아 file의 data를 가져오는 방식으로 감.하지만 이는 real time으로 mesh를 제작해 gazebo에 띄워야 하기에는 적합 하지 않으며  이 외의 방식으로는 sdf를 파싱하는 구조, 디렉토리 전체를 수정해야 함. 다른 방법 좀 더 찾아보기
+</pre>
