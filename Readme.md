@@ -1,7 +1,5 @@
 ## Cutomzing plugin to make depth frame as mesh in real time and work on gazebo
 
-Order
-
 1. Get depth frame from realsense. I'm trying to publish depth frame and subscribe to it in the plugin. 
 
 2. In plugin file, convert the depth frame to mesh. Mesh data should be made in the form of a dae file.
